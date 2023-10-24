@@ -7,6 +7,9 @@ router.post('/signup1', userController.signup1);
 router.post('/signup2', userController.signup2);
 router.post('/signup3', userController.signup3);
 
+// 중복확인 라우트
+router.post('/checkDuplicate', userController.checkDuplicate);
+
 // 로그인 라우트
 router.post('/login', userController.login);
 
