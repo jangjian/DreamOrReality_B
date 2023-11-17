@@ -1,10 +1,10 @@
 const mysql = require('mysql2');
 const randomstring = require('randomstring');
 const connection = mysql.createConnection({
-  host: 'database-2.c5g2jjczgnhi.ap-northeast-2.rds.amazonaws.com',
+  host: 'localhost',
   user: 'root',
-  password: 'yopamipa7541',
-  database: 'DreamOrReality'
+  password: '1011',
+  database: 'dream_or_reality'
 });
 
 
@@ -54,7 +54,7 @@ exports.signup2 = (req, res) => {
 exports.signup3 = (req, res) => {
   const { graduateyear, reality, userid } = req.body;
 
-  const sql = 'UPDATE user SET graduateyaer = ?, reality = ? WHERE userid = ?';
+  const sql = 'UPDATE user SET graduateyear = ?, reality = ? WHERE userid = ?';
   connection.query(sql, [ graduateyear, reality, userid ], (err, result) => {
     if (err) {
       console.error(err);
