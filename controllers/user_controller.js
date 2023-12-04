@@ -54,7 +54,7 @@ exports.signup2 = (req, res) => {
 exports.signup3 = (req, res) => {
   const { graduateyear, reality, userid } = req.body;
 
-  const sql = 'UPDATE user SET graduateyear = ?, reality = ? WHERE userid = ?';
+  const sql = 'UPDATE user SET graduatedate = ?, reality = ? WHERE userid = ?';
   connection.query(sql, [ graduateyear, reality, userid ], (err, result) => {
     if (err) {
       console.error(err);
@@ -93,5 +93,28 @@ exports.login = (req, res) => {
       }
       res.status(200).json(userData);
     });
+  });
+};
+
+exports.getName= (req, res) => {
+  const { userid } = req.body;
+
+  // 데이터베이스 쿼리를 사용하여 날짜와 status_today 값 불러오기
+  const sql = 'SELECT name FROM user WHERE userid = ?';
+
+  connection.query(sql, [userid], (err, result) => {
+      if (err) {
+          console.error(err);
+          return res.status(500).json({ error: '오류가 발생했습니다.' });
+      }
+
+      if (result.length === 0) {
+          return res.status(401).json({ error: '데이터를 찾을 수 없습니다.' });
+      }
+
+      // 클라이언트에 응답 전송
+      return res.status(200).json({
+          name : result[0].name
+      });
   });
 };

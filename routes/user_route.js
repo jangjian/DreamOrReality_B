@@ -13,4 +13,7 @@ router.post('/checkDuplicate', userController.checkDuplicate);
 // 로그인 라우트
 router.post('/login', userController.login);
 
+// 이름 가져오기 라우트
+router.post('/getName', userController.getName);
+
 module.exports = router;
